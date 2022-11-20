@@ -1,3 +1,4 @@
+import json
 import requests
 from bs4 import BeautifulSoup
 query = "test"
@@ -35,3 +36,17 @@ while i < (int)(pageNumbers[-1]):
         links.append("https://www.adverts.ie" + adSearchResults.find("a", class_ ="main-image").get("href"))
     i+=1
 print(listingTitles)
+
+file = open("scrapedInfo.json", "w")
+dumpedArray = json.dumps(listingTitles)
+file.write("[" + dumpedArray)
+dumpedArray = json.dumps(images)
+file.write(","+dumpedArray)
+dumpedArray = json.dumps(prices)
+file.write(","+dumpedArray)
+dumpedArray = json.dumps(locations)
+file.write(","+dumpedArray)
+dumpedArray = json.dumps(links)
+file.write(","+dumpedArray+"]")
+file.close()
+

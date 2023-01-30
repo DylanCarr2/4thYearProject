@@ -46,7 +46,7 @@ def getAdvertsData():
         i+=1
     print(listingTitles)
 
-    file = open("scrapedInfo.json", "w")
+    file = open("static/js/scrapedInfo.json", "w")
     dumpedArray = json.dumps(listingTitles)
     file.write("[" + dumpedArray)
     dumpedArray = json.dumps(images)

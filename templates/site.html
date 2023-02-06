@@ -1,11 +1,14 @@
 <html>
     <body>
-        <form action="/search" method="POST">
+        <form action="" method="POST">
             <input name ="searchbar"> <button>Search</button>
         </form>
     </body>
 </html>
-<script src="script.js"></script>
+<script>
+    document.querySelector('form').onchange = function() {
+    this.setAttribute('action',"/"+ document.querySelector('input[name=searchbar]').value + "/search1");
+  }</script>
 <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
 <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 <py-script src ="./scraper.py"></py-script>

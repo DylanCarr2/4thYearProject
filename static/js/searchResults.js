@@ -8,12 +8,25 @@ fetch('../static/js/scrapedInfo.json')
 .then((response) =>  response.json())
 .then(data => {
     jsonData = data;
-    console.log(jsonData);
+    
+    const sortRow = 2;
+
+// Get the values of the sort row
+    const sortValues = jsonData[sortRow];
+
+    const sortIndices = Array.from(sortValues.keys());
+    sortIndices.sort((a, b) => sortValues[a] - sortValues[b]);
+    const sortedArr = jsonData.map(row => sortIndices.map(index => row[index]));
+     
+    jsonData = sortedArr;
+
+
+    console.log(sortedArr);
     for(let i=0;i<jsonData[0].length;i++){
         div = document.createElement("div");
         document.getElementById("searchResults").innerHTML += jsonData[0][i] 
         +"<br> <img src=' "+jsonData[1][i]+"' >"
-        +"<br> <b>"+jsonData[2][i]+"</b> <br>"
+        +"<br> <b>"+"€"+jsonData[2][i]+"</b> <br>"
         +jsonData[3][i]
         +"<br>"+"<a href='"+jsonData[4][i]+"'>"+jsonData[4][i]+"</a><br><br>";
     }
